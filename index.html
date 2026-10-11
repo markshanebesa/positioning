@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
+
+    <style>
+        /* BASIC SETTINGS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #edf4fc;
+            color: #14213d;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION BAR */
+        header {
+            width: 94%;
+            margin: 20px auto;
+            padding: 20px 30px;
+            background: linear-gradient(120deg, #071b3b, #123d79);
+            color: white;
+            border: 1px solid #28558d;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(7, 27, 59, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* MAIN BOX LAYOUT */
+        .container {
+            width: 94%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1.2fr;
+            grid-template-areas:
+                "profile hero hero"
+                "about hobbies goals"
+                "contact contact contact";
+            gap: 20px;
+        }
+
+        /* COMMON BOX DESIGN */
+        .box {
+            padding: 25px;
+            border: 1px solid #d4e4f7;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 6px 20px rgba(15, 50, 90, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(15, 50, 90, 0.15);
+        }
+
+        .box h2 {
+            margin-bottom: 12px;
+            color: #102c56;
+        }
+
+        /* PROFILE BOX */
+        .profile {
+            grid-area: profile;
+            text-align: center;
+            color: white;
+            background: linear-gradient(145deg, #087de0, #071b3b);
+            border: none;
+        }
+
+        .profile img {
+            width: 180px;
+            height: 200px;
+            object-fit: cover;
+            border: 5px solid white;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s;
+        }
+
+        .profile img:hover {
+            transform: scale(1.04) rotate(1deg);
+        }
+
+        .profile h2 {
+            color: white;
+            font-size: 23px;
+        }
+
+        .profile p {
+            color: #dbeafe;
+            margin-bottom: 15px;
+        }
+
+        /* BUTTON DESIGN */
+        .button {
+            display: inline-block;
+            padding: 10px 18px;
+            margin-top: 15px;
+            background: linear-gradient(90deg, #1687f8, #2563eb);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #38bdf8;
+            color: #071b3b;
+            transform: scale(1.04);
+        }
+
+        /* HERO BOX */
+        .hero {
+            grid-area: hero;
+            min-height: 290px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background:
+                radial-gradient(circle at top right, #c6e7ff, transparent 50%),
+                linear-gradient(135deg, #ffffff, #e0efff);
+            overflow: hidden;
+        }
+
+        .eyebrow {
+            color: #087de0;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 4vw, 43px);
+            line-height: 1.2;
+            margin: 12px 0;
+        }
+
+        .hero h1 span {
+            color: #087de0;
+        }
+
+        .hero p {
+            max-width: 600px;
+        }
+
+        /* ABOUT BOX */
+        .about {
+            grid-area: about;
+            background: linear-gradient(145deg, white, #f1f7ff);
+        }
+
+        /* HOBBIES BOX */
+        .hobbies {
+            grid-area: hobbies;
+            background: linear-gradient(145deg, white, #e1f1ff);
+        }
+
+        /* GOALS BOX */
+        .goals {
+            grid-area: goals;
+            background: linear-gradient(145deg, white, #fff7df);
+        }
+
+        .box-title {
+            font-size: 22px;
+            border-bottom: 3px solid #1687f8;
+            padding-bottom: 8px;
+        }
+
+        ul, ol {
+            padding-left: 23px;
+            margin-top: 12px;
+        }
+
+        li {
+            margin-bottom: 9px;
+        }
+
+        ul li::marker {
+            color: #1687f8;
+        }
+
+        ol li::marker {
+            color: #087de0;
+            font-weight: bold;
+        }
+
+        /* CONTACT BOX */
+        .contact {
+            grid-area: contact;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: linear-gradient(120deg, #071b3b, #123d79);
+            color: white;
+            border: none;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact p {
+            color: #dbeafe;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            border: 1px solid #7dbdff;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .contact-links a:hover {
+            background: #1687f8;
+            border-color: #1687f8;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            color: #536985;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: #087de0;
+            font-weight: bold;
+        }
+
+        /* TABLET SCREEN */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                    "profile hero"
+                    "about hobbies"
+                    "goals goals"
+                    "contact contact";
+            }
+        }
+
+        /* MOBILE SCREEN */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "profile"
+                    "hero"
+                    "about"
+                    "hobbies"
+                    "goals"
+                    "contact";
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .profile img {
+                width: 160px;
+                height: 180px;
+            }
+
+            .contact {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header id="home">
+        <div class="logo">&lt;/&gt; MY <span>PORTFOLIO</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About Me</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="#goals">Goals</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <!-- PROFILE AND IMAGE -->
+        <section class="box profile">
+            <img src="Me.jpg" alt="My Personal Picture">
+
+            <h2>Mark Shane Besa</h2>
+
+            <p>IT Student | Future Web Developer</p>
+
+            <a href="#about" class="button">Know More About Me</a>
+        </section>
+
+        <!-- WELCOME SECTION -->
+        <section class="box hero">
+            <p class="eyebrow">WELCOME TO MY WEBSITE</p>
+
+            <h1>
+                Hello, I'm a Future
+                <span>IT Professional!</span>
+            </h1>
+
+            <p>
+                Welcome to my personal portfolio.
+                This website contains information about me,
+                my hobbies, and my goals as an IT student.
+                I believe that small steps can lead to big achievements.
+            </p>
+
+            <a href="#goals" class="button">Explore My Goals &rarr;</a>
+        </section>
+
+        <!-- ORDINARY TEXT -->
+        <section class="box about" id="about">
+            <h2 class="box-title">About Me</h2>
+
+            <p>
+                I am an Information Technology student who wants
+                to learn more about computers and web development.
+                I want to improve my skills and create useful
+                websites in the future.
+            </p>
+        </section>
+
+        <!-- UNORDERED LIST -->
+        <section class="box hobbies" id="hobbies">
+            <h2 class="box-title">My Hobbies</h2>
+
+            <p>Here are some of my favorite activities:</p>
+
+            <ul>
+                <li>Playing basketball</li>
+                <li>Listening to music</li>
+                <li>Playing online games</li>
+                <li>Learning new technology</li>
+            </ul>
+        </section>
+
+        <!-- ORDERED LIST -->
+        <section class="box goals" id="goals">
+            <h2 class="box-title">My Goals</h2>
+
+            <p>These are my goals as an IT student:</p>
+
+            <ol>
+                <li>Improve my HTML and CSS skills.</li>
+                <li>Learn JavaScript.</li>
+                <li>Create my own website.</li>
+                <li>Become a skilled IT professional.</li>
+            </ol>
+        </section>
+
+        <!-- HYPERLINKS TO OTHER BOXES -->
+        <section class="box contact" id="contact">
+            <div>
+                <h2>Contact and Navigation</h2>
+
+                <p>Thank you for visiting my personal portfolio!</p>
+
+                <p>Click the links to explore the other boxes.</p>
+            </div>
+
+            <div class="contact-links">
+                <a href="#home">Back to Home</a>
+                <a href="#about">About Me</a>
+                <a href="#hobbies">My Hobbies</a>
+                <a href="#goals">My Goals</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        My Personal Portfolio | <span>2026</span>
+        <p>Designed using HTML and CSS</p>
+    </footer>
+
+</body>
+</html>
+```
